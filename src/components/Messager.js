@@ -1,0 +1,79 @@
+import React from 'react'
+
+import notification from 'antd/lib/notification'
+import 'antd/lib/notification/style/css'
+
+import AlbumIcon from './AlbumIcon.png'
+
+notification.config({
+    duration: 2.5,
+    // todo
+});
+
+export function tips(msg, icon, description) {
+    return notification.open({
+        classname: 'antd/lib/notification/style/css',
+        icon: icon,
+        message: msg,
+        description: description
+    })
+}
+
+export class Messager extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state={
+            api: 'http://localhost:8080/user/messages',
+            interval: 5000,
+            messages: null,
+        };
+        this.get.bind(this);
+        this.show.bind(this);
+    }
+
+    componentDidMount() {
+        fetch("http://localhost:8080/user/account/login?username=jack&password=123",{
+            credentials: "include"
+        })
+            .then(response=>response.text())
+            .then((responseText)=>{
+                console.log(responseText)
+            });
+        this.timer=setInterval(()=> this.get(),this.state.interval);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timer)
+    }
+
+    componentDidUpdate() {
+        this.show()
+    }
+
+    get() {
+        fetch(this.state.api, {
+            credentials: "include"
+        })
+            .then(response => response.json())
+            .then((responseJson) => {
+                console.log(responseJson);
+                this.setState({
+                    messages: responseJson
+                })
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
+
+    show() {
+        tips('A Message!', <img src={AlbumIcon}/>, this.state.messages[0].info+" "+this.state.messages[0].type)
+    }
+
+    render() {
+        return(
+            <p></p>
+        )
+    }
+}

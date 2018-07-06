@@ -6,6 +6,9 @@ import 'antd/dist/antd.css';
 import Headerdemo from './Headerdemo';
 import Userheader from './Userheader';
 import Userfoot from './Userfoot';
+
+import * as Messager from '../components/Messager'
+
 const { Header, Content, Footer, Sider } = Layout;
 const Search = Input.Search;
 
@@ -13,6 +16,7 @@ class User extends Component {
     render() {
         return (
             <div>
+                <Messager.Messager/>
             <Headerdemo/>
             <Userheader/>
                 <Userfoot/>
