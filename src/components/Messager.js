@@ -32,14 +32,6 @@ export class Messager extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:8080/user/account/login?username=jack&password=123",{
-            credentials: "include"
-        })
-            .then(response=>response.text())
-            .then((responseText)=>{
-                console.log(responseText)
-            });
-
         this.timer=setInterval(()=> this.get(),this.state.interval);
     }
 
