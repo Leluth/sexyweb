@@ -39,6 +39,7 @@ export class Messager extends React.Component {
             .then((responseText)=>{
                 console.log(responseText)
             });
+
         this.timer=setInterval(()=> this.get(),this.state.interval);
     }
 
@@ -68,12 +69,16 @@ export class Messager extends React.Component {
 
 
     show() {
-        tips('A Message!', <img src={AlbumIcon}/>, this.state.messages[0].info+" "+this.state.messages[0].type)
+        if(this.state.messages.length===0)
+            return;
+        tips('A Message!',
+            <img src={'http://localhost:8080/images/'+this.state.messages[0].user.avatar}/>,
+            this.state.messages[0].info+" "+this.state.messages[0].type)
     }
 
     render() {
         return(
-            <p></p>
+            <div>A Little Happy Messager!</div>
         )
     }
 }
