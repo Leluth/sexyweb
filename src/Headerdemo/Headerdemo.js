@@ -2,6 +2,7 @@ import { Layout, Menu, Icon } from 'antd';
 import React, { Component } from 'react';
 import { Divider } from 'antd';
 import { Input } from 'antd';
+import { BackTop } from 'antd';
 import 'antd/dist/antd.css';
 import '../index.css'
 const { Header,  } = Layout;
@@ -10,6 +11,8 @@ const Search = Input.Search;
 class Headerdemo extends Component {
     render() {
         return (
+            <div style={{width: '100%' ,height:80}}>
+
                     <Header className="boder" style={{background: '#fff', position: 'fixed', zIndex: 1, width: '100%' ,height:80}}>
                         <a href="#"><Icon type="instagram" style={{ paddingLeft:'5%',fontSize: 50, color: '#000000',margin: 10}}/></a>
                         <Divider type="vertical" style={{ height:40}} />
@@ -29,7 +32,11 @@ class Headerdemo extends Component {
                             <Menu.Item key="2"><Icon type="heart-o"  style={{ fontSize:'1.4em'}}/></Menu.Item>
                             <Menu.Item key="3"><Icon type="user" style={{ fontSize:'1.4em'}} /></Menu.Item>
                         </Menu>
+                        <BackTop>
+                            <div className="backtop"><Icon type="arrow-up" /></div>
+                        </BackTop>
                     </Header>
+            </div>
         );
     }
 }
